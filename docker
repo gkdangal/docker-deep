@@ -1,0 +1,105 @@
+Installation is super easy you can see on docker official site.
+
+After installation
+
+#usermod -g wheel user
+$docker images
+// list all docker images downloaded from docker hub
+--------------------------------------------------
+curl -fsSL https://get.docker.com/ | sh
+   36  sudo systemctl status docker
+   37  yum list installed | grep docker
+   38  systemctl start docker
+   39  sudo systemctl start docker
+   40  sudo systemctl enable docker
+   41  sudo usermod -aG docker $(whoami)
+   42  $whoami
+   43  $(whoami)
+   44  echo $(whoami)
+   45  docker
+   46  docker run hello-world
+   47  docker search centos
+   48  docker pull centos
+   49  docker run centos
+   50  docker images
+   52  docker run -it centos
+   53  docker images
+------------------- 
+Normally when you run this command like this
+$docker run -it centos
+=> you are atomatially login into container
+=> -it is i=> interactive and T is terminal
+to find details about docker
+$ docker inspect ubuntu:xenial
+
+how to login to running docker imagaes.
+$ docker attach noastalgic_saha
+---------------------------------
+$ docker pull ubuntu:xenial
+$ docker run -itd ubuntu:xenial
+$ docker ps -a
+$ docker ps -a -q => to find out all running container on system.
+$ docker attach ubuntu:xenial => to enter into container shell
+# apt-get update -y => to update the container base pacages
+# apt-get install ifconfig => for ubuntu ifconfig command
+====== To see all details of ubuntu =======
+$ docker inspect ubuntu:xenial => diaplay all about ubuntu:xenaial
+$ docker inspect ubuntu:xenial | grep ip => i will show all information about ip address 
+$ docker inspect Ubuntu:xenial | grep status => it will show status of ubuntu.
+-----------------It is impossible to manage static ip address for docker container--------
+### To stop docker ###
+$ docker stop ubuntu:xenial
+$ docker stop nginx
+$ docker stop jenkins => it will stop jenkins...
+-----From one image we can create different isolated container.
+## we can search docker images from docker hub using search command on terminal
+$ docker search ubuntu => It will list all ubuntu the images found in docker hub 
+
+###creating Custome Image from base image ########
+## custome image can be cretaed may ways but i am going to practice two ways. In this example i am going to take ubuntu:xenial as a  base image
+<!-- -->
+1. First way.
+$ docker pull ubuntu:xenial
+$ docker run -it ubuntu:xenial /bin/bash
+after running this command you will enter in to docker container ubuntu:xenail as a root user
+# cd /root
+# echo "This is version 1 of my custume image" > image-varsion
+# apt-get update -y
+# apt-get install telnet openssh-server net-tools
+# useradd test 
+# passwd test => set the password for test user
+# cat /etc/passwd | grep test => to find test user
+# exit
+=> exit from the container terminal
+$ docker commit -m "Already installed SSH, telnet, net-ttols and created user test "govinda" <optional>original-base-image-creater govinda/ubusshd:v1
+here docker command look like github 
+=> govinda/ubusshd:v1 -> Newly created image
+=> -a "govinda" => creater name 
+=> docker commit -> commit command
+$ docker run -it govinda/ubusshd /bin/bash
+#here you can check installed package and test user
+<!--    -->
+############# Second Way of image creation usong Dockerfile###########
+$ mkdir docker-first-build
+$ cd docker-first-build
+$ vim Dockerfile
+## add this line on docker file
+
+# This is a custome ubuntu images with SSH, telnet, and net-tools alrady installed.
+FROM ubuntu:xenial
+MAINTAINER Govinda <gkdangal@gmail.com>
+RUN apt-get update -y
+RUN apt-get install -y telnet openssh-server net-tools
+
+=> save and exit
+
+$ docker build -t="govinda/ubusshtelnet:v2" .
+=> (specify)<location of Dockerfile>
+=> here . means Docker file present in current directroy
+=> it may take some time after seeing success message you can run your custom docker images.
+$ docker run -itd govinda/ubusshtelnet:v2 /bin/bash
+$ docker run -it govinda/ubusshtelnet:v2
+#######################################
+
+
+

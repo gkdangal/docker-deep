@@ -1,0 +1,12 @@
+##For spring war files
+
+COPY /target/course-api-docker.jar /usr/local/tomcat/webapps/
+ADD target/course-api-docker.jar course-api-docker.jar
+
+##Spring boot first docker files
+
+FROM openjdk:8u151-jdk
+ADD target/course-api-docker.jar course-api-docker.war
+EXPOSE 8080
+ENTRYPOINT ["java","-jar", "course-api-docker"]
+

@@ -1,0 +1,44 @@
+## In this file i am going to show how to push locally created docker images into Docker Hub
+
+Step 1. i have to install Docker on my workstaton or machine
+step 2. Create new docker images or customize from docker image from docker hub
+Step 3. Login to my docker hub terminal from my docker machine
+Here is the command
+
+govinda@govinda:~$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: govinda (put your docker username here)
+Password:******************
+Login Succeeded
+govinda@govinda:~$
+
+$ docker images => list all of my docker images that i already created
+$ docker tag 2bde2eb6e643 govinda/spring-boot-test1:spring-Boot
+$ docker push govinda/spring-boot-test1 => output is look like this
+________________________________________________
+govinda@govinda:~$ docker push gkdangal/docker-spring-boot1
+The push refers to a repository [docker.io/gkdangal/docker-spring-boot1]
+0cbf528d6295: Pushed 
+5d3c07c13e04: Pushed 
+875b1eafb4d0: Mounted from library/openjdk 
+7ce1a454660d: Mounted from library/openjdk 
+d3b195003fcc: Mounted from library/openjdk 
+92bd1433d7c5: Mounted from library/openjdk 
+f0ed7f14cbd1: Mounted from library/openjdk 
+b31411566900: Mounted from library/openjdk 
+06f4de5fefea: Mounted from library/openjdk 
+851f3e348c69: Mounted from library/openjdk 
+e27a10675c56: Mounted from library/openjdk 
+spring_boot: digest: sha256:01fc632e5f478d667ffeaec988052b287308fd313e1853c234f4cf8db4ecdd90 size: 2635
+________________________________________________________________________________
+
+Saving and loading images
+Pushing to Docker Hub is great, but it does have some disadvantages:
+
+Bandwidth - many ISPs have much lower upload bandwidth than download bandwidth.
+Unless you’re paying extra for the private repositories, pushing equals publishing.
+When working on some clusters, each time you launch a job that uses a Docker container it pulls the container from Docker Hub, and if you are running many jobs, this can be really slow.
+
+
+
+
