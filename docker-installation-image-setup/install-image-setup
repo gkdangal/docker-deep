@@ -1,0 +1,51 @@
+1. Update your system
+[root@gkdangal1 ~]# sudo yum update
+-------------------------
+2. [root@gkdangal1 ~]# systemctl enable docker
+3. [root@gkdangal1 ~]# systemctl start docker
+4. [root@gkdangal1 ~]# ps aux | grep docker => to see the process of docker
+5. Groupadd 
+# groupadd docker
+# cat /etc/group | grep docker
+Find the line that looks like: docker:x:1001:
+-------------
+Adding user "user" to the group docker
+[root@gkdangal1 ~]# usermod -aG docker user
+[root@gkdangal1 ~]# systemctl restart docker
+
+[root@gkdangal1 ~]# docker ps 
+-------------------
+pulling images
+
+[root@gkdangal1 ~]# docker pull ubuntu:lates
+==output like this====
+latest: Pulling from docker.io/ubuntu
+
+6071b4945dcf: Pull complete 
+
+5bff21ba5409: Pull complete 
+
+e5855facec0b: Pull complete 
+
+8251da35e7a7: Pull complete 
+
+Digest: sha256:1572e29178048ad9ab72e78edd4decc91a3d8a8dea0ca39817efc7cf2d86c6d7
+
+Status: Downloaded newer image for docker.io/ubuntu:latest
+
+(Output)..
+==========================================================
+To deploy ubuntu 
+#docker run -it docker.io/ubuntu:latest /bin/bash
+
+To run in background
+# docker run -it -d docker.io/ubuntu:latest /bin/bash
+
+To attache to the terminal
+# docker attach "image_name"
+
+----------------------
+To see the list of Image pull
+# docker image
+
+

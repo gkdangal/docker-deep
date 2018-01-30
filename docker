@@ -99,7 +99,12 @@ $ docker build -t="govinda/ubusshtelnet:v2" .
 => it may take some time after seeing success message you can run your custom docker images.
 $ docker run -itd govinda/ubusshtelnet:v2 /bin/bash
 $ docker run -it govinda/ubusshtelnet:v2
-#######################################
+#############How to rename container##########################
+govinda@govinda:~$ docker container rename c5a8b2e9b7be proxy-server
+govinda@govinda:~$ docker restart  proxy-server
+govinda@govinda:~$ docker attach proxy-server
+root@c5a8b2e9b7be:/# 
+#####################
 
 
 

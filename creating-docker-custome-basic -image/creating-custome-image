@@ -1,0 +1,28 @@
+create folder and create Dockerfile
+
+[root@gkdangal1 ~]# mkdir custom
+
+[root@gkdangal1 ~]# cd custom
+
+[root@gkdangal1 custom]# touch Dockerfile
+
+FROM centos:centos6
+MAINTAINER govinda dangal gkdangala2gmail.com
+
+# Update the server OS
+RUN yum -y upgrade
+
+# Install Apache Web Server
+RUN yum -y install httpd
+
+# Install OpenSSH-Server
+RUN yum -y install openssh-server
+
+# Expose the SSH and Web Ports for attachment
+EXPOSE 22 80
+-----------------------
+Building custom image from docker file and my pwd must be custom
+
+[root@gkdangal1 custom]# docker build -t mycustomimg/withservices:v1 .
+
+

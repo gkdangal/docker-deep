@@ -15,6 +15,14 @@ govinda@govinda:~$
 $ docker images => list all of my docker images that i already created
 $ docker tag 2bde2eb6e643 govinda/spring-boot-test1:spring-Boot
 $ docker push govinda/spring-boot-test1 => output is look like this
+*********************
+$  docker images
+$  docker push govinda/proxy-server:v1
+$  docker images
+$  docker tag 7a46235d6d41 gkdangal/proxy-server:latest
+$ docker images
+$ docker push gkdangal/proxy-server
+
 ________________________________________________
 govinda@govinda:~$ docker push gkdangal/docker-spring-boot1
 The push refers to a repository [docker.io/gkdangal/docker-spring-boot1]
@@ -38,6 +46,7 @@ Pushing to Docker Hub is great, but it does have some disadvantages:
 Bandwidth - many ISPs have much lower upload bandwidth than download bandwidth.
 Unless you’re paying extra for the private repositories, pushing equals publishing.
 When working on some clusters, each time you launch a job that uses a Docker container it pulls the container from Docker Hub, and if you are running many jobs, this can be really slow.
+
 
 
 
